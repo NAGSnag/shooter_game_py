@@ -188,7 +188,7 @@ class boss(pygame.sprite.Sprite):
         self.rect.h += 15
         #self.sound = random.choice([False, False, True, False, False])
         self.drops = random.choice([False, False, False, True, False])
-        self.bdrops = random.choice([False, False, False, False, True, False, False])
+        self.bdrops = random.choice([False, True])
         self.sbdrops = random.choice([False, True])
         self.dropsitem = [1, 2, 3, 4, 5, 6, 7]
         self.speed_factor = 0.4
@@ -254,8 +254,8 @@ class zombie(pygame.sprite.Sprite):
         # self.rect.w = 10;
         self.rect.h += 15
         #self.sound = random.choice([False, False, True, False, False])
-        self.drops = random.choice([False, False, False, True, False])
-        self.bdrops = random.choice([False, False, False, False, True, False, False])
+        self.drops = random.choice([False, False, False, False, False])
+        self.bdrops = random.choice([False, False, False, False,False, False, False])
         self.dropsitem = [1, 2, 3, 4, 5, 6, 7]
         self.speed_factor = 0.8
         self.rect_pos = pygame.Vector2(posx, posy)
@@ -323,7 +323,7 @@ class Hopper(pygame.sprite.Sprite):
         self.rect.x = posx
         self.rect.y = posy
         self.rect.w-=10;self.rect.h-=10
-        self.sound=random.choice([False,False,True,False,False])
+        self.sound=random.choice([False,False,False,False,True,False,False])
         self.drops=random.choice([False,False,False,True,False])
         self.bdrops=random.choice([False,False,False,False,True,False,False])
         self.dropsitem=[1,2,3,4,5,6,7]
@@ -513,7 +513,7 @@ def main():
             ammorect.x = i
             ammorect.y = j
             if p1.rect.colliderect(ammorect):
-                p1.gun2[1] += 20
+                p1.gun2[1] += 50
                 sbdrop.remove((i, j))
         for i, j in droppos:
             win.blit(heart, (i, j))
@@ -538,6 +538,14 @@ def main():
 
 
         if shoot:
+            sound=''
+            if p1.gun==2:
+                sound="./temp/sounds/shotgun-firing-3-14483.mp3"
+            elif p1.gun==1:
+                sound="./temp/sounds/076415_light-machine-gun-m249-39827.mp3"
+            else:
+                sound='./temp/sounds/pistolfire.mp3'
+
             shotb=[]
             try:
                 if p1.gun==2:
@@ -556,7 +564,7 @@ def main():
 
                 if count%3==0:
                     if bultimes!=0:
-                        pygame.mixer.Sound('./temp/sounds/pistolfire.mp3').play().set_volume(0.5)
+                        pygame.mixer.Sound(sound).play().set_volume(0.7)
                         b = bullet(p1.posx, p1.posy)
                         blist.append(b)
                         bultimes-=1
