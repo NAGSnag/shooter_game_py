@@ -193,7 +193,7 @@ class boss(pygame.sprite.Sprite):
         self.dropsitem = [1, 2, 3, 4, 5, 6, 7]
         self.speed_factor = 0.4
         self.rect_pos = pygame.Vector2(posx, posy)
-        self.health =900
+        self.health =1400
         self.count = 0
 
     def deadpos(self):
@@ -513,7 +513,7 @@ def main():
             ammorect.x = i
             ammorect.y = j
             if p1.rect.colliderect(ammorect):
-                p1.gun2[1] += 50
+                p1.gun2[1] += 20
                 sbdrop.remove((i, j))
         for i, j in droppos:
             win.blit(heart, (i, j))
@@ -522,7 +522,7 @@ def main():
             heartrect.y=j
             if p1.rect.colliderect(heartrect):
                 if p1.health<100*fps:
-                    p1.health+=20*fps
+                    p1.health+=3*fps
                     droppos.remove((i,j))
                 else:
                     p1.health=100*fps
@@ -564,7 +564,7 @@ def main():
 
                 if count%3==0:
                     if bultimes!=0:
-                        pygame.mixer.Sound(sound).play().set_volume(0.7)
+                        pygame.mixer.Sound(sound).play()
                         b = bullet(p1.posx, p1.posy)
                         blist.append(b)
                         bultimes-=1
