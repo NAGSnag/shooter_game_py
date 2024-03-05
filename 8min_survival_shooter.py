@@ -122,7 +122,7 @@ class player():
         self.player_pos = pygame.Vector2(w // 3, h // 3)
         self.gun=0
         self.gun0=[10,500]
-        self.gun1=[10,200]
+        self.gun1=[10,100]
         self.gun2=[10,20]
         self.currenthead=head[5]
 
@@ -608,16 +608,14 @@ def main():
                             p1.gun1[1]-=1
                             p1.gun1[0]-=1
                             bulcount -= 1
-                            if bulcount < 0 and p1.gun1[1]:
-                                pygame.mixer.Sound(
-                                    './temp/sounds/reloading.mp3').play().set_volume(0.5)
+                            if bulcount <= 0 and p1.gun1[1]:
+                                pygame.mixer.Sound('./temp/sounds/reloading.mp3').play().set_volume(0.5)
                                 bulcount = 10
                                 p1.gun1[0] = 10
                                 continue
                             shoot=True
                         else:
-                            pygame.mixer.Sound(
-                                './temp/sounds/reloading.mp3').play().set_volume(0.5)
+                            pygame.mixer.Sound('./temp/sounds/reloading.mp3').play().set_volume(0.5)
 
 
                     if p1.gun == 2:
@@ -628,15 +626,13 @@ def main():
                             p1.gun2[0] -= 1
                             bulcount -= 1
                             if bulcount < 0 and p1.gun2[1]:
-                                pygame.mixer.Sound(
-                                    './temp/sounds/reloading.mp3').play().set_volume(0.5)
+                                pygame.mixer.Sound('./temp/sounds/reloading.mp3').play().set_volume(0.5)
                                 bulcount = 10
                                 p1.gun2[0] = 10
                                 continue
                             shoot = True
                         else:
-                            pygame.mixer.Sound(
-                                './temp/sounds/reloading.mp3').play().set_volume(0.5)
+                            pygame.mixer.Sound('./temp/sounds/reloading.mp3').play().set_volume(0.5)
                 except Exception as e:
                     print(e)
 
